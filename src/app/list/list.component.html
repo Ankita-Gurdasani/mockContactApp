@@ -1,0 +1,28 @@
+<h3>Contact List</h3>
+<input class="input-search" [(ngModel)]="searchContact" placeholder="Quick search contacts">
+<a (click)="navigateToEditorCreate()"><button class="btn btn-success pull-right">Add contact</button></a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>EmailAddress</th>
+      <th>ContactNumber</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contactList | filter : searchContact" (click)="navigateToEditorEdit(contact.id)">
+      <td>{{contact.id}}</td>
+      <td>{{contact.name}}</td>
+      <td>
+        Work Email: {{contact.email.work}}<br>Personal Email :{{contact.email.personal}}
+      </td>
+      <td>
+        Work Contact :{{contact.contactNumber.work}}<br>Personal Contact : {{contact.contactNumber.personal}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul class="pagination">
+  <li *ngFor="let paginationLink of paginationLinks" class="{{paginationLink.classes}}"><a class="page-link" (click)=navigateToList(paginationLink.link)>{{paginationLink.label}}</a></li>
+</ul>
